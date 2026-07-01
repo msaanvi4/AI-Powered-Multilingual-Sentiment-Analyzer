@@ -1,0 +1,5 @@
+emoji = {
+    "positive": "😊",
+    "neutral": "😐",
+    "negative": "😞"
+}

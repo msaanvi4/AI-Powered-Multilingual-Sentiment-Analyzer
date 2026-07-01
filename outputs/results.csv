@@ -1,0 +1,7 @@
+Sentence,Language,Sentiment,Confidence (%)
+I love this movie.,English 🇺🇸,positive,93.57
+This product is terrible.,English 🇺🇸,negative,95.59
+மुझे यह बहुत पसंद है।,Hindi 🇮🇳,positive,71.04
+இந்த படம் மிகவும் அருமை.,Tamil 🇮🇳,positive,89.45
+This food is amazing.,English 🇺🇸,positive,91.51
+I will never buy this again.,English 🇺🇸,negative,82.62
