@@ -6,89 +6,93 @@ from src.language_detector import detect_language
 from src.file_processor import analyze_uploaded_text
 from src.utils import emoji
 
-# ==========================
-# PAGE CONFIG
-# ==========================
 st.set_page_config(
     page_title="AI-Powered Multilingual Sentiment Analyzer",
     page_icon="🌍",
     layout="wide"
 )
 
-# ==========================
-# SIDEBAR
-# ==========================
-st.sidebar.title("🌍 Navigation")
+st.markdown("""
+<style>
+.block-container {padding-top:2rem;}
+</style>
+""", unsafe_allow_html=True)
 
+st.sidebar.title("🌍 Navigation")
 page = st.sidebar.radio(
     "Choose a page",
     ["🏠 Home", "📂 Analyze File", "📊 Statistics", "ℹ About"]
 )
 
-# ==========================
-# HOME
-# ==========================
 if page == "🏠 Home":
+    st.title("🌍 AI-Powered Multilingual Sentiment Analyzer")
+    st.markdown("### AI Powered Language & Sentiment Detection")
 
-        st.title("🌍 AI-Powered Multilingual Sentiment Analyzer")   
-        st.markdown("### AI Powered Language & Sentiment Detection")
+    left, right = st.columns([2,1])
 
-    text = st.text_area("Enter a sentence", height=150)
-    analyze = st.button("🚀 Analyze")
+    with left:
+        text = st.text_area(
+            "Enter a sentence",
+            height=180,
+            placeholder="Type a sentence in any supported language..."
+        )
+        analyze = st.button("🚀 Analyze")
+
+    with right:
+        st.info("""
+### Features
+- 🌍 Language Detection
+- 😊 Sentiment Analysis
+- 🤖 Hugging Face Model
+- ⚡ Fast Inference
+""")
 
     if analyze:
-
-        if text.strip() == "":
-            st.warning("Enter text first!")
+        if not text.strip():
+            st.warning("Please enter some text.")
         else:
             with st.spinner("Analyzing..."):
-
                 result = analyze_sentiment(text)
-
                 sentiment = result["label"].lower()
                 confidence = result["score"] * 100
                 language = detect_language(text)
 
-            st.success("Done!")
+            st.success("Analysis Complete!")
 
             c1, c2, c3 = st.columns(3)
-
             c1.metric("🌍 Language", language)
-            c2.metric("😊 Sentiment", sentiment.capitalize())
+            c2.metric("😊 Sentiment", f"{emoji.get(sentiment,'')} {sentiment.capitalize()}")
             c3.metric("📊 Confidence", f"{confidence:.2f}%")
 
-# ==========================
-# ANALYZE FILE
-# ==========================
 elif page == "📂 Analyze File":
+    st.title("📂 Analyze Text File")
 
-    st.title("📂 File Analysis")
-
-    uploaded_file = st.file_uploader("Upload a .txt file", type=["txt"])
+    uploaded_file = st.file_uploader(
+        "Upload a .txt file",
+        type=["txt"]
+    )
 
     if uploaded_file is not None:
-
         text = uploaded_file.read().decode("utf-8")
 
-        with st.spinner("Analyzing..."):
+        with st.spinner("Analyzing file..."):
             df = analyze_uploaded_text(text)
 
         st.success("Analysis Complete!")
 
-        # ================= FILTERS =================
         st.subheader("🔍 Filters")
-
         col1, col2, col3 = st.columns(3)
 
         search = col1.text_input("Search")
-
-        lang = col2.selectbox("Language", ["All"] + list(df["Language"].unique()))
-        senti = col3.selectbox("Sentiment", ["All"] + list(df["Sentiment"].unique()))
+        lang = col2.selectbox("Language", ["All"] + sorted(df["Language"].unique().tolist()))
+        senti = col3.selectbox("Sentiment", ["All"] + sorted(df["Sentiment"].unique().tolist()))
 
         filtered = df.copy()
 
         if search:
-            filtered = filtered[filtered["Sentence"].str.contains(search, case=False)]
+            filtered = filtered[
+                filtered["Sentence"].str.contains(search, case=False, na=False)
+            ]
 
         if lang != "All":
             filtered = filtered[filtered["Language"] == lang]
@@ -96,43 +100,34 @@ elif page == "📂 Analyze File":
         if senti != "All":
             filtered = filtered[filtered["Sentiment"] == senti]
 
-        # ================= STATS =================
-        st.subheader("📊 Stats")
-
+        st.subheader("📊 Statistics")
         pos = (filtered["Sentiment"] == "Positive").sum()
         neg = (filtered["Sentiment"] == "Negative").sum()
         neu = (filtered["Sentiment"] == "Neutral").sum()
 
-        c1, c2, c3 = st.columns(3)
-
-        c1.metric("😊 Positive", pos)
-        c2.metric("😞 Negative", neg)
-        c3.metric("😐 Neutral", neu)
-
-        # ================= BAR CHART =================
-        st.subheader("📊 Sentiment Distribution")
+        a, b, c = st.columns(3)
+        a.metric("😊 Positive", pos)
+        b.metric("😞 Negative", neg)
+        c.metric("😐 Neutral", neu)
 
         counts = filtered["Sentiment"].value_counts()
 
-        fig, ax = plt.subplots()
+        st.subheader("📊 Sentiment Distribution")
+        fig, ax = plt.subplots(figsize=(6,4))
         ax.bar(counts.index, counts.values)
+        ax.set_xlabel("Sentiment")
+        ax.set_ylabel("Count")
         st.pyplot(fig)
 
-        # ================= PIE CHART =================
         st.subheader("🥧 Sentiment Breakdown")
-
-        fig2, ax2 = plt.subplots()
+        fig2, ax2 = plt.subplots(figsize=(5,5))
         ax2.pie(counts.values, labels=counts.index, autopct="%1.1f%%")
         st.pyplot(fig2)
 
-        # ================= TABLE =================
         st.subheader("📋 Results")
-
         st.dataframe(filtered, use_container_width=True)
 
-        # ================= DOWNLOAD =================
         csv = filtered.to_csv(index=False).encode("utf-8")
-
         st.download_button(
             "⬇ Download Results",
             csv,
@@ -140,28 +135,29 @@ elif page == "📂 Analyze File":
             mime="text/csv"
         )
 
-# ==========================
-# STATISTICS
-# ==========================
 elif page == "📊 Statistics":
+    st.title("📊 Statistics Dashboard")
+    st.info("Upload a text file in the 'Analyze File' page to view interactive statistics and charts.")
 
-    st.title("📊 Dashboard")
-
-    st.info("Full analytics dashboard coming soon.")
-
-# ==========================
-# ABOUT
-# ==========================
 else:
-
     st.title("ℹ About")
+    st.markdown("""
+## AI-Powered Multilingual Sentiment Analyzer
 
-    st.write("""
-This project demonstrates:
+This application uses Hugging Face Transformers to analyze sentiment across multiple languages.
 
-- Multilingual Sentiment Analysis
+### Features
+- 🌍 Automatic Language Detection
+- 😊 AI Sentiment Analysis
+- 📂 Batch Text File Analysis
+- 📊 Interactive Charts
+- 📥 CSV Export
+
+### Tech Stack
+- Python
+- Streamlit
 - Hugging Face Transformers
-- Streamlit Dashboard
-- File Upload & Filtering
-- Data Visualization
+- Pandas
+- Matplotlib
+- LangDetect
 """)
