@@ -10,7 +10,7 @@ from src.utils import emoji
 # PAGE CONFIG
 # ==========================
 st.set_page_config(
-    page_title="Multilingual Sentiment Analyzer",
+    page_title="AI-Powered Multilingual Sentiment Analyzer",
     page_icon="🌍",
     layout="wide"
 )
@@ -30,8 +30,8 @@ page = st.sidebar.radio(
 # ==========================
 if page == "🏠 Home":
 
-    st.title("🌍 Multilingual Sentiment Analyzer")
-    st.markdown("### AI Powered Language & Sentiment Detection")
+        st.title("🌍 AI-Powered Multilingual Sentiment Analyzer")   
+        st.markdown("### AI Powered Language & Sentiment Detection")
 
     text = st.text_area("Enter a sentence", height=150)
     analyze = st.button("🚀 Analyze")
