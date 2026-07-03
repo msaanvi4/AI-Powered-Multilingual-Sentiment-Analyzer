@@ -30,19 +30,35 @@ An AI-powered web application that performs **multilingual sentiment analysis** 
 
 ### 🏠 Home Page
 
-*(Add Screenshot Here)*
+<p align="center">
+  <img src="screenshots/home.png" width="900">
+</p>
 
 ---
 
 ### 📂 File Analysis
 
-*(Add Screenshot Here)*
+<p align="center">
+  <img src="screenshots/file.analysis.png" width="900">
+</p>
 
 ---
 
 ### 📊 Statistics
 
-*(Add Screenshot Here)*
+<p align="center">
+  <img src="screenshots/statistics-1.png" width="900">
+</p>
+<p align="center">
+  <img src="screenshots/statistics-2.png" width="900">
+</p>
+---
+
+### ℹ About
+
+<p align="center">
+  <img src="screenshots/about.png" width="900">
+</p>
 
 ---
 
