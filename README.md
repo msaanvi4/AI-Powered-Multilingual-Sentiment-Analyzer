@@ -1,26 +1,52 @@
 # 🌍 AI-Powered Multilingual Sentiment Analyzer
 
-An AI-powered web application that performs multilingual sentiment analysis using state-of-the-art Natural Language Processing (NLP) models. Built with **Hugging Face Transformers**, **Streamlit**, and **Python**, the application detects the language of the input text, predicts its sentiment, and provides interactive visualizations for both individual sentences and uploaded text files.
+An AI-powered web application that performs **multilingual sentiment analysis** using Hugging Face Transformers. The application automatically detects the language of the input text, predicts its sentiment, and visualizes the results through an interactive Streamlit dashboard.
+
+---
+
+## 🌐 Live Demo
+
+> **Try the application here:**  
+> **PASTE YOUR STREAMLIT LINK HERE**
 
 ---
 
 ## ✨ Features
 
-- 🌍 Supports multilingual sentiment analysis
-- 🤖 AI-powered sentiment prediction using Hugging Face Transformers
-- 🌐 Automatic language detection
-- 📝 Analyze a single sentence in real time
-- 📂 Upload and analyze `.txt` files
+- 🌍 Automatic language detection
+- 😊 AI-powered sentiment analysis
+- 📂 Batch text file analysis
+- 🔍 Search and filter results
 - 📊 Interactive statistics dashboard
-- 📈 Sentiment distribution bar chart
-- 🥧 Sentiment distribution pie chart
-- 🔍 Filter results by language, sentiment, or keywords
-- 📥 Export analysis results as CSV
-- 💻 Clean and responsive Streamlit interface
+- 📈 Bar chart visualization
+- 🥧 Pie chart visualization
+- 📥 Download results as CSV
+- ⚡ Fast inference using Hugging Face Transformers
+- 🌐 Supports multiple languages
 
 ---
 
-## 🛠️ Tech Stack
+## 📸 Screenshots
+
+### 🏠 Home Page
+
+*(Add Screenshot Here)*
+
+---
+
+### 📂 File Analysis
+
+*(Add Screenshot Here)*
+
+---
+
+### 📊 Statistics
+
+*(Add Screenshot Here)*
+
+---
+
+## 🛠 Tech Stack
 
 - Python
 - Streamlit
@@ -32,53 +58,51 @@ An AI-powered web application that performs multilingual sentiment analysis usin
 
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
-```
+```text
 AI-Powered-Multilingual-Sentiment-Analyzer/
 │
 ├── app.py
-├── main.py
 ├── requirements.txt
 ├── README.md
-├── .gitignore
 │
 ├── data/
-│   ├── sample_reviews.txt
-│   └── reviews.txt
+│   ├── reviews.txt
+│   └── sample_reviews.txt
 │
 ├── outputs/
 │
 └── src/
-    ├── file_processor.py
-    ├── language_detector.py
     ├── sentiment.py
-    ├── utils.py
+    ├── language_detector.py
+    ├── file_processor.py
+    └── utils.py
 ```
 
 ---
 
-## 🚀 Installation
+## ⚙ Installation
 
-Clone the repository:
+Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Powered-Multilingual-Sentiment-Analyzer.git
+git clone https://github.com/msaanvi4/AI-Powered-Multilingual-Sentiment-Analyzer.git
 ```
 
-Move into the project folder:
+Go inside the folder
 
 ```bash
 cd AI-Powered-Multilingual-Sentiment-Analyzer
 ```
 
-Create a virtual environment:
+Create a virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate the virtual environment.
+Activate it
 
 **Windows**
 
@@ -86,119 +110,28 @@ Activate the virtual environment.
 venv\Scripts\activate
 ```
 
-**Mac/Linux**
-
-```bash
-source venv/bin/activate
-```
-
-Install dependencies:
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## ▶️ Running the Application
-
-Launch the Streamlit application:
+Run the application
 
 ```bash
 streamlit run app.py
 ```
 
-The application will open automatically in your browser.
-
 ---
 
-## 📖 How to Use
+## 🚀 Future Improvements
 
-### Single Sentence Analysis
-
-1. Open the **Home** page.
-2. Enter a sentence in any supported language.
-3. Click **Analyze**.
-4. View:
-   - Detected language
-   - Sentiment
-   - Confidence score
-
----
-
-### File Analysis
-
-1. Open **Analyze File**.
-2. Upload a `.txt` file.
-3. View:
-   - Analysis results
-   - Statistics
-   - Interactive charts
-4. Download the results as a CSV file.
-
----
-
-## 🌍 Supported Languages
-
-The application supports multilingual sentiment analysis using a multilingual transformer model.
-
-Examples include:
-
-- 🇺🇸 English
-- 🇮🇳 Hindi
-- 🇮🇳 Tamil
-- 🇮🇳 Telugu
-- 🇮🇳 Kannada
-- 🇮🇳 Malayalam
-- 🇧🇩 Bengali
-- 🇮🇳 Gujarati
-- 🇮🇳 Marathi
-- 🇮🇳 Punjabi
-- 🇵🇰 Urdu
-- 🇫🇷 French
-- 🇩🇪 German
-- 🇪🇸 Spanish
-- 🇮🇹 Italian
-- 🇵🇹 Portuguese
-- 🇷🇺 Russian
-- 🇯🇵 Japanese
-- 🇰🇷 Korean
-- 🇨🇳 Chinese
-- 🇸🇦 Arabic
-
----
-
-## 📊 Screenshots
-
-### Home Page
-
-*(Add screenshot after deployment.)*
-
----
-
-### File Analysis
-
-*(Add screenshot after deployment.)*
-
----
-
-### Statistics Dashboard
-
-*(Add screenshot after deployment.)*
-
----
-
-## 🔮 Future Improvements
-
-- PDF document analysis
-- Excel and CSV uploads
-- Dark mode
-- Sentiment history
-- User authentication
-- REST API
-- Model comparison dashboard
+- PDF report generation
+- Word cloud visualization
+- CSV dataset upload
+- Interactive Plotly charts
+- Multi-model sentiment comparison
 - Emotion detection
-- Named Entity Recognition (NER)
 
 ---
 
@@ -206,14 +139,10 @@ Examples include:
 
 **Saanvi Maharana**
 
-GitHub:
-https://github.com/YOUR_GITHUB_USERNAME
-
-LinkedIn:
-(Add your LinkedIn profile)
+GitHub: https://github.com/msaanvi4
 
 ---
 
-## 📄 License
+## ⭐ If you like this project
 
-This project is developed for learning, portfolio, and educational purposes.
+Please consider giving it a ⭐ on GitHub.
