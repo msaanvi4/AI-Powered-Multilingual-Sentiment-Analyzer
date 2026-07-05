@@ -1,8 +1,10 @@
 import streamlit as st
 import matplotlib.pyplot as plt
+import pandas as pd
 
 from src.sentiment import analyze_sentiment
 from src.language_detector import detect_language
+from src.csv_sources import extract_text_entries
 from src.file_processor import analyze_uploaded_text
 from src.utils import emoji
 
@@ -68,12 +70,20 @@ elif page == "📂 Analyze File":
     st.title("📂 Analyze Text File")
 
     uploaded_file = st.file_uploader(
-        "Upload a .txt file",
-        type=["txt"]
+        "Upload a .txt or .csv file",
+        type=["txt", "csv"]
     )
 
     if uploaded_file is not None:
-        text = uploaded_file.read().decode("utf-8")
+        if uploaded_file.name.lower().endswith(".csv"):
+            try:
+                rows = extract_text_entries(pd.read_csv(uploaded_file))
+                text = "\n".join(rows)
+            except ValueError as error:
+                st.error(f"Could not load CSV: {error}")
+                st.stop()
+        else:
+            text = uploaded_file.read().decode("utf-8")
 
         with st.spinner("Analyzing file..."):
             df = analyze_uploaded_text(text)
